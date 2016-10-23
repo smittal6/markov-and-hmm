@@ -1,55 +1,28 @@
 \documentclass[compress]{beamer}
-%\documentclass[ignorenonframetext,handout]{beamer}
-%\setbeamercovered{transparent}
-%\usepackage[ISO 8859-1]{inputenc}
 \usepackage{default}
-
-% para usar figuras devemos acrescentar
 \usepackage{graphicx}
-%\usepackage{graphics}
-%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
-%\DeclareGraphicsExtensions{.jpg, .eps}
-%\DeclareGraphicsRule{.jpg}{eps}{.jpg}{`jpeg2ps -h -r 600 #1}
-\usepackage{tikz}
-%\usetikzlibrary{arrows,backgrounds,coordinatesystems,3d,shapes,plotmarks,automata,calendar,er,
-%folding,matrix,mindmap,patterns,petri,plothandlers,topaths,trees} 
+\usepackage{tikz} 
 \usetikzlibrary{positioning}
-%\usepgflibrary{decorations.pathreplacing}
 \usetikzlibrary{decorations.pathreplacing}
 \usetikzlibrary{decorations.pathmorphing}
 \usetikzlibrary[patterns]
-%\tikzstyle{every text node part}
-%\usetikzlibrary{arrows,backgrounds,positioning,fit} 
 \usetikzlibrary{calc}
-% para gerar graficos no latex
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
-
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{MnSymbol}
-
 \usepackage[brazil]{babel}
 \usepackage[utf8]{inputenc}
-
-% \usepackage{algpseudocode}
-% \usepackage{algorithmicx}
 \usepackage[Algoritmo]{algorithm}
 \usepackage[noend]{algorithmic}
-
 \setbeamertemplate{bibliography entry title}{}
 \setbeamertemplate{bibliography entry location}{}
 \setbeamertemplate{bibliography entry note}{}
-
 \newcounter{saveenumi}
 \newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
 \newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
-
-%\usepackage{shadethm}
-%\definecolor{shadethmcolor}{rgb}{.75,.75,.75}
-%\newshadetheorem{theorem}{\scshape Teorema}[chapter]
-
 \newtheorem{teorema}[theorem]{\scshape Teorema}
 \newtheorem{proposicao}[theorem]{\scshape Proposição}
 \newtheorem{corolario}[theorem]{\scshape Corolário}
@@ -60,7 +33,6 @@
 \newtheorem{exemplo}[theorem]{\scshape Exemplo}
 \newtheorem{exemplos}[theorem]{\scshape Exemplos}
 \newtheorem{propriedade}[theorem]{\scshape Propriedade}
-
 \renewcommand{\u}{{\bf u}}
 \renewcommand{\v}{{\bf v}}
 \renewcommand{\sin}{\operatorname{sen}}
@@ -71,7 +43,6 @@
 
 \newcommand{\ie}{\textit{i.e.}}
 \newcommand{\eg}{\textit{e.g.}}
-%\newcommand{\qed}{\hfill $\square$}
 
 \renewcommand\Re{\operatorname{Re}}
 \renewcommand\Im{\operatorname{Im}}
@@ -100,29 +71,14 @@
 \providecommand{\erosion}{\mathcal{E}}
 \providecommand{\open}{\mathcal{O}}
 \providecommand{\close}{\mathcal{C}}
-
 \newcommand*{\Bhat}{\skew{3}{\hat}{B}}
 
 \mode<presentation>
 {
-    %\setbeamertemplate{}[vertical shading][bottom=white!10,top=blue!10]
+ 
     \usetheme{Warsaw}
-  %\usetheme{Warsaw}
- % \usefonttheme[onlysmall]{structurebold}
-  
-  %\setbeamertemplate{headline}{}
-  
-%   \setbeamercovered{invisible} % default
-  %\setbeamercovered{ transparent, again covered={\opaqueness{25}} } % =15%
-%   \setbeamercovered{transparent=50}
-%   \setbeamercovered{dynamic}
-
-%   \setbeamercovered{again covered={\opaqueness<1->{25}}}
 }
 
-% copiado do site:
-% http://latex-beamer-class.10966.n7.nabble.com/Covering-images-transparent-i-e-dimmed-figures-td1504
-% . html
 \usepackage{ifthen}
 
 \makeatletter
@@ -137,20 +93,7 @@
                 {\includegraphics[#1]{#2}};%
     }
 } 
-\makeatother % não sei se precisa...
-
-%\pgfdeclareimage[height=1.4cm]{logo_XIVsm}{semanauniversitaria}
-
-%% put XIVsm logo in bottom left
-%\setbeamertemplate{sidebar left}{
-%%   \vfill%
- %  \rlap{\hskip0.0cm
-  %       %\href{http://www.uece.br/semanauniversitaria}
-   %      {\pgfuseimage{logo_XIVsm}}}
-   %%\vskip2pt%
-   %%\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
-   %%\vskip2pt%
-%}
+\makeatother
 
 \title[Markov Chain and Hidden Markov Models]{Markov Chain and Hidden Markov Models\\ for Speech Recognition Systems}
 \author[]{Siddhartha Saxena, Siddharth Mittal, Ankit Bharadwaj}
@@ -544,7 +487,7 @@ Q(\lambda_{old},\lambda) = \sum_{z} P(Q|O,\lambda_{old})log\{p(O,Q | \lambda)\} 
   % Followed by interesting articles. Keep the list short. 
 
   \bibitem{}
-    Rabiner-Zheung
+    Rabiner-Juang
     \newblock An introduction
 to Hidden Markov Model
     %\newblock {\em Journal of This and That}, 2(1):50--100,
