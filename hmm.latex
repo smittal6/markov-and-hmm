@@ -1,0 +1,554 @@
+\documentclass[compress]{beamer}
+%\documentclass[ignorenonframetext,handout]{beamer}
+%\setbeamercovered{transparent}
+%\usepackage[ISO 8859-1]{inputenc}
+\usepackage{default}
+
+% para usar figuras devemos acrescentar
+\usepackage{graphicx}
+%\usepackage{graphics}
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\DeclareGraphicsExtensions{.jpg, .eps}
+%\DeclareGraphicsRule{.jpg}{eps}{.jpg}{`jpeg2ps -h -r 600 #1}
+\usepackage{tikz}
+%\usetikzlibrary{arrows,backgrounds,coordinatesystems,3d,shapes,plotmarks,automata,calendar,er,
+%folding,matrix,mindmap,patterns,petri,plothandlers,topaths,trees} 
+\usetikzlibrary{positioning}
+%\usepgflibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary[patterns]
+%\tikzstyle{every text node part}
+%\usetikzlibrary{arrows,backgrounds,positioning,fit} 
+\usetikzlibrary{calc}
+% para gerar graficos no latex
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{MnSymbol}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+
+% \usepackage{algpseudocode}
+% \usepackage{algorithmicx}
+\usepackage[Algoritmo]{algorithm}
+\usepackage[noend]{algorithmic}
+
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+%\usepackage{shadethm}
+%\definecolor{shadethmcolor}{rgb}{.75,.75,.75}
+%\newshadetheorem{theorem}{\scshape Teorema}[chapter]
+
+\newtheorem{teorema}[theorem]{\scshape Teorema}
+\newtheorem{proposicao}[theorem]{\scshape Proposição}
+\newtheorem{corolario}[theorem]{\scshape Corolário}
+\newtheorem{lema}[theorem]{\scshape Lema}
+\newtheorem{definicao}[theorem]{\scshape Definição}
+\newtheorem{conjectura}[theorem]{\scshape Conjectura}
+\newtheorem{escolio}[theorem]{\scshape Escólio}
+\newtheorem{exemplo}[theorem]{\scshape Exemplo}
+\newtheorem{exemplos}[theorem]{\scshape Exemplos}
+\newtheorem{propriedade}[theorem]{\scshape Propriedade}
+
+\renewcommand{\u}{{\bf u}}
+\renewcommand{\v}{{\bf v}}
+\renewcommand{\sin}{\operatorname{sen}}
+\renewcommand{\tan}{\operatorname{tg}}
+\providecommand{\cas}{\operatorname{cas}}
+\providecommand{\mdc}{\mathrm{mdc}}
+\providecommand{\f}{{\bf f}}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+%\newcommand{\qed}{\hfill $\square$}
+
+\renewcommand\Re{\operatorname{Re}}
+\renewcommand\Im{\operatorname{Im}}
+
+\providecommand{\x}{{\bf x}}
+\providecommand{\y}{{\bf y}}
+\providecommand{\w}{{\bf w}}
+\providecommand{\f}{{\bf f}}
+\providecommand{\q}{{\bf q}}
+\providecommand{\bfa}{{\bf a}}
+\providecommand{\bfb}{{\bf b}}
+\providecommand{\bfc}{{\bf c}}
+\providecommand{\bfd}{{\bf d}}
+\providecommand{\bfe}{{\bf e}}
+\providecommand{\bfs}{{\bf s}}
+\providecommand{\bfz}{{\bf z}}
+\providecommand{\zero}{{\bf 0}}
+\providecommand{\spn}{\mathrm{span}}
+\providecommand{\posto}{\mathrm{posto}}
+\providecommand{\nul}{\mathrm{nul}}
+\providecommand{\proj}{\mathrm{proj}}
+\providecommand{\tr}{\mathrm{tr}}
+\providecommand{\sgn}{\mathrm{sgn}}
+\providecommand{\cov}{\mathrm{cov}}
+\providecommand{\dilation}{\mathcal{D}}
+\providecommand{\erosion}{\mathcal{E}}
+\providecommand{\open}{\mathcal{O}}
+\providecommand{\close}{\mathcal{C}}
+
+\newcommand*{\Bhat}{\skew{3}{\hat}{B}}
+
+\mode<presentation>
+{
+    %\setbeamertemplate{}[vertical shading][bottom=white!10,top=blue!10]
+    \usetheme{Warsaw}
+  %\usetheme{Warsaw}
+ % \usefonttheme[onlysmall]{structurebold}
+  
+  %\setbeamertemplate{headline}{}
+  
+%   \setbeamercovered{invisible} % default
+  %\setbeamercovered{ transparent, again covered={\opaqueness{25}} } % =15%
+%   \setbeamercovered{transparent=50}
+%   \setbeamercovered{dynamic}
+
+%   \setbeamercovered{again covered={\opaqueness<1->{25}}}
+}
+
+% copiado do site:
+% http://latex-beamer-class.10966.n7.nabble.com/Covering-images-transparent-i-e-dimmed-figures-td1504
+% . html
+\usepackage{ifthen}
+
+\makeatletter
+\newcommand{\includecoveredgraphics}[2][]{
+    \ifthenelse{\the\beamer@coveringdepth=1}{
+        \tikz
+            \node[inner sep=0pt,outer sep=0pt,opacity=0.15]
+                {\includegraphics[#1]{#2}};
+    }{
+        \tikz
+            \node[inner sep=0pt,outer sep=0pt]
+                {\includegraphics[#1]{#2}};%
+    }
+} 
+\makeatother % não sei se precisa...
+
+%\pgfdeclareimage[height=1.4cm]{logo_XIVsm}{semanauniversitaria}
+
+%% put XIVsm logo in bottom left
+%\setbeamertemplate{sidebar left}{
+%%   \vfill%
+ %  \rlap{\hskip0.0cm
+  %       %\href{http://www.uece.br/semanauniversitaria}
+   %      {\pgfuseimage{logo_XIVsm}}}
+   %%\vskip2pt%
+   %%\llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+   %%\vskip2pt%
+%}
+
+\title[Markov Chain and Hidden Markov Models]{Markov Chain and Hidden Markov Models\\ for Speech Recognition Systems}
+\author[]{Siddhartha Saxena, Siddharth Mittal, Ankit Bharadwaj}
+\institute[] % (optional, but mostly needed)
+{
+  
+  Department of Computer Science and Engineering\\
+  Indian Institute of Technology, Kanpur
+}
+\date{October 22, 2016}
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+%%% Part below: Markov Chains
+\section{}
+\subsection{}
+%%Definition one
+\begin{frame}{Introduction to Markov Chains}
+  \begin{block}{Definition}
+  \item {
+    A probabilistic model describing a sequence of possible events in which the probability of each event depends on the states attained in the previous event.
+  }
+  \end{block}
+\end{frame}
+
+%%Definition two
+\begin{frame}{Introduction to Markov chains}
+    \begin{itemize}
+        \item {
+            A Markov chain is a sequence \(X_0, X_1, X_2, \ldots\) of random variables that indicate states \(1, 2, 3, \ldots, m\) such that there is a probability \(p_{ij}\) that \(X_{n+1} = i\) given that \(X_n = j\).
+        }
+        \pause \item{
+            \(p_{ij}\) are called \textit{transition probabilities} whose sum for each fixed i is 1. We can write the transition probabilities in matrix form as follows:
+            \\
+            \[ P=
+                \begin{bmatrix}
+                p_{11} & \ldots & p_{1m} \\
+                p_{21} & \ldots & p_{2m}\\
+                \vdots & \ddots & \vdots\\
+                p_{m1} & \ldots & p_{mm}\\
+                \end{bmatrix}
+            \]
+            \\ \(P\) is called the Transition matrix
+        }
+        \pause \item{
+        	A state vector X is changed to a new state vector X' using the transition matrix as follows:
+        	\[X'=PX\]
+        	}
+    \end{itemize}
+\end{frame}
+
+%%Introduction is over
+
+\section{}
+\subsection{}
+
+% You can reveal the parts of a slide one at a time
+% with the \pause command:
+%% Example one
+\begin{frame}{Let's look at an example..}
+  \begin{itemize}
+    \item {
+    A boy, a girl, and a dog are playing with a ball.\\ The boy throws the ball
+    to the girl $2/3$ of the time and to the dog $1/3$ of the time.\\ The girl throws
+    the ball to the boy $1/2$ of the time and to the dog $1/2$ of the time.\\ The dog
+    brings the ball to the girl all of the time.
+    }
+   \pause \item{
+   	We can turn the situation into a matrix equation. \\ Let the probabilities
+   	that the boy, the girl, and the dog have the ball at time n be $b_n$, $g_n$, and $d_n$, respectively. \\ The initial probabilities $b_0$, $g_0$, and $d_0$ are three non-negative real numbers that sum to 1.
+   	}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{itemize}
+		\item {The probabilities satisfy the following matrix equation:
+		\\
+		\[
+		\begin{bmatrix}
+			b_{n+1} \\
+			g_{n+1} \\
+			d_{n+1} \\
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+		0 & 1/2 & 0 \\
+		2/3 & 0 & 1 \\
+		1/3 & 1/2 & 0 \\
+		\end{bmatrix}
+		\begin{bmatrix}
+		b_n \\
+		g_n \\
+		d_n \\
+		\end{bmatrix}
+		\]
+	}
+	\item {
+		
+		\[\begin{bmatrix}
+			0 & 1/2 & 0 \\
+			2/3 & 0 & 1\\
+			1/3 & 1/2 & 0
+		\end{bmatrix}\] is the transition matrix for given example.
+		}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Another example..}
+	\begin{itemize}
+		\item A famous Markov chain is the so-called "drunkard's walk", a random walk on the number line where, at each step, the position may change by +1 or $-1$ with equal probability. From any position there are two possible transitions, to the next or previous integer. 
+		\pause \item The transition probabilities depend only on the current position, not on the manner in which the position was reached. For example, the transition probabilities from 5 to 4 and 5 to 6 are both 0.5, and all other transition probabilities from 5 are 0. These probabilities are independent of whether the system was previously in 4 or 6.
+	\end{itemize}
+\end{frame}
+%%%%%% The above part: Markov Chains
+
+%%% Place for Hidden markov models
+\begin{frame}{Hidden Markov Model}{Definition}
+  \begin{itemize}
+  \item {
+    A hidden markov model is a doubly stochastic  process with an underlying stochastic  process  that is not observable (it is hidden), but can only be  observed through another set of stochastic  processes  that  produce  the  sequence  of observed  symbols. 
+  }
+  \end{itemize}
+\end{frame}
+\begin{frame}{Explanation through example}
+  \begin{itemize}
+  \item {
+    Consider the example of weather on any given day. Assume that each 'day' corresponds to a state. For simplicity, we assume that only three types of weather are possible namely, sunny, rainy and foggy. Take 1st order Markov approximation that the weather on day n is decided entirely by weather on day n-1. 
+     
+  }
+  \pause{}
+  \item{
+    Let the transition probabilities be given by the corresponding table:
+  \end{itemize}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    today's weather & \multicoloumn{}{} {tomorrow's weather}\\
+    \hline
+     &sunny&rainy&foggy\\
+     \hline
+     sunny&0.8&0.05&0.15\\
+     \hline
+     rainy&0.2&0.6&0.2\\
+     \hline
+     foggy&0.2&0.3&0.5\\
+     \hline
+     }
+    \end{tabular}  
+\end{frame}
+\begin{frame}
+\begin{itemize}
+\item{Now consider that you are locked in a room for several days and the only clue you get for  the weather outside is  whether the person carrying your daily meal carries an umberella or not. The corresponding probability table is given by: }
+\begin{tabular}{|c|c|}
+    \hline
+    weather & probability of umberella  \\
+    \hline
+    sunny & 0.1 \\
+    \hline
+    rainy & 0.8 \\
+    \hline
+    foggy & 0.3 \\
+    \hline
+\end{tabular}
+\pause
+\item{In this example, the points to  be noted are
+1)The actual weather is hidden from you.
+2)The process is doubly stochastic as any outcome is achieved with two probability distributions
+3)The observed symbols are presence or absence of umbrella on any day.}
+\end{itemize}
+    
+\end{frame}
+\begin{frame}{Elements of HMM}
+\begin{itemize}
+\item{There is a finite number, say N, of states in our HMM. In the considered example, there were 3 states, i.e the different types of weather.}
+\pause
+\item{At each clock time t, a new state is entered based on the transition probability distribution which depends on the previous state(by the Markovian property). Inn our example, each new day was the new clock time and the table 1 was transition probabilities between states. }
+\pause
+\item{After each transition is made, an observation output symbol is produced according to a probability distribution(Table 2) which depends on the current state and remains fixed for that state regardless of when or how the state is achieved.}
+\end{itemize}
+\end{frame}
+\begin{frame}{Formal Model}
+We now formally define the following model notation for discrete observation HMM:
+\begin{itemize}
+\item{T = length of observation sequence (number of clock times)}
+\pause
+\item{N = number of states in the model}
+\pause
+\item{M = number of possible observation symbols}
+\pause
+\item{Q = $\{q_1, q_2, ....,q_N\}$, states}
+\pause
+\item{V = $\{v_1, v_2, ...,v_M\}$, discrete set of possible observations}
+\pause
+\item{A = $\{a_{ij}\}$, $a_{ij}=Pr(q_j$ at $t+1|q_i$ at $t)$, state transition probability distribution}
+\pause
+\item{B = $\{b_j(k)\}$,$b_j(k)=Pr(v_k$ at $t|q_j$ at $t)$, observation symbol probability distribution in state j}
+\pause
+\item{\pi = $\{\pi_i\}, \pi_i=Pr(q_i$  at $t=1)$, initial state distribution}
+\pause
+\item{O = $\{O_1,O_2,...,0_T\}$, observation sequence}
+\end{itemize}
+\end{frame}
+
+%%% Place above for hidden markov models
+\begin{frame}{Use of HMMs in speech recognition}
+\uncover<+-> {\textbf{Isolated Word Model}}
+
+\begin{enumerate}
+    \uncover<+-> {\item Spectral Representation of words and Vector Quantization
+    \begin{itemize}
+      \item The speech signal received needs to be represented in such a way that it is linguistically meaningful as well as computationally favourable. For this purpose  the received speech signal is represented by its  spectrum, i.e. frequency distribution of intensity. Various models such as bank of filter and linear prediction are used for the spectral analysis of speech signal received. This gives us a continuous representation of a word }
+      \uncover<+-> {\item Then we can convert it into discrete objects like phonemes using a nearest neighbor model whee we compare the given phonemes with the output of the spectral analysis and give the most similar or "nearest neighbour" as the output.} 
+    \end{itemize}
+\end{enumerate}    
+\end{frame}    
+\begin{frame}{Isolated word model contd.}    
+ \begin{enumerate}
+ \setcounter{enumi}{1}
+    \item Building an HMM for each word
+    \begin{itemize}
+        \uncover<+-> {\item We assume that we are having a vocabulary of V words and for each word we build a markov model. Now here each word is made up of occurrences $O_1, O_2, ... O_N$ each being an element of the codebook  }
+        \uncover<+-> {\item Now we can define different number of states in our model. Here we consider the number of states as the number of phonemes that occur in the word  and each state has different probabilities for different in-dices of the codebook. For example in a codebook of phonemes, there are 44 different probabilities associate with a state. }
+        \uncover<+-> {\item In order to train our model we use the training data for a single word spoken by several speakers. Then we have to train our model parameters for transformation from one state to another using the problem number three. }
+    \end{itemize}    
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Isolated Word Model contd.}
+\begin{enumerate}
+    \begin{itemize}
+        \uncover<+-> {\item To give an example consider the word "sit", the phonemes can be /s/,/i/,/t/ or /z/,/e/,/t/ or anything else with varying probabilities depending on the speaker and there will be a different probability of occurrence of /e/ in two different states which we need to find out while training which is done by the EM Algorithm.  }
+        \uncover<+-> {\item Now during test time what we do is that we convert the spoken word or words into features using Vector Quantization and then concentrate on individual words first. We then evaluate the probabilities of it being any of the word in our vocabulary using the HMMs we trained but computationally, this process is very expensive hence we shall introduce the Forward-Backward algorithm to overcome it.} 
+        \uncover<+-> {\item Then we can also use the constrains like it being a meaningful word as well as the syntactic constraints of grammar and semantic constraints.}
+        
+    \end{itemize}
+\end{enumerate}
+
+\end{frame}
+%%% Problems in HMM
+\begin{frame}{The three problems in HMMs}
+\begin{enumerate}
+\item{The Evaluation Problem}
+\item{The Sequence Choosing Problem}
+\item{Finding the Model Parameters}
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{The Evaluation Problem}
+    \begin{itemize}
+    \item The evaluation problem is that given a model and the sequence of observations, how do we compute the probability that the observed sequence was produced by the model.
+    \pause \item Given the observations $O_1, O_2, ...., O_T$ and states $q_1, q_2, ..., q_T$  we have we need to find the probability of occurrence of this observation sequence i.e. $P(O|\lambda)$ where $\lambda$ signifies the model parameters.
+    \pause \item The straightforward way of doing this is through enumerating every possible state sequence of length T (The number of observations).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+    \item We consider one such state sequence $Q=q_1 q_2 ... q_T$\\
+    The probability of observation sequence $O$ for the above state sequence is: \\
+    $P(O|Q,\lambda)=\prod_{t = 1}^{t = T}P({O_t}|{q_t},\lambda)$
+    \\We assume independence of observations
+    \pause \item The joint probability that $O$ and $Q$ occur simultaneously is simply:\\
+    $P(O,Q|\lambda)=P(O|Q,\lambda)P(Q|\lambda)$
+    \pause \item Then $P(O|\lambda)$ is obtained by summing this joint probability over all possible state sequences, giving:\\
+    $P(O|\lambda)=\sum_{all Q} P(O|Q,\lambda)P(Q|\lambda)$\\
+    $=\sum_{q_1,..,q_T} \pi_{q_1} b_{q_1}(O_1) a_{q_{1}q_{2}}...a_{q_{T-1}q_{T}}b_{q_T}(O_T)$
+    \pause \item This process involves roughly $2T*N^T$ calculations, which is computationally unfeasible.\\
+    (There are $N^T$ possible states and each state involves roughly $2T$ calculations)
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%
+\begin{frame}{Way around this}
+In order to reduce the complexity, the forward-backward procedure is used. It has three steps which give a complexity of the order of $N^2T$, which is much better.
+
+\begin{itemize}
+
+\vfill \pause \item {The Forward Probability (The probability of the partial observation sequence $O_1,O_2,..,O_t$ and state $S_i$ at time t):
+\begin{equation*}
+ \alpha_t(i) = P(O_1, O_2, ..., O_t,q_t=S_i|\lambda) 
+\end{equation*}
+}
+for $ 1 \leq i \leq N$ \\
+\vfill \pause \item  {Now we can calculate $\alpha_t's$ inductively as
+\begin{equation*}
+ \alpha_{t+1}(j) = [\sum_{i = 1}^{i = N}\alpha_t(i)a_{ij}]b_{j}(O_{t+1})
+\end{equation*}
+}
+\vfill \item \pause {Finally $P(O|\lambda)$ is the sum of all $\alpha_{T}(i)'s$:  
+\begin{equation*}
+ P(O|\lambda) = \sum_{i = 1}^{N}\alpha_T(i)
+\end{equation*}
+}
+\end{itemize}
+\end{frame}
+
+%%%defining backward variable 
+\begin{frame}
+    \begin{itemize}
+    \item In a manner similar to forward probability variable, we define a backward probability variable as\\
+    $\beta_t(i)=P(O_{t+1} O_{t+2} ... O_T| q_t=S_i, \lambda)$\\
+    i.e., the probability of the partial observation sequence from t+1 to the end, given state $S_i$ at time $t$ and the model $\lambda$.
+    \pause \item The following inductive step is used for finding $\beta$'s.
+\begin{equation*}
+ \beta_{t}(i) = \sum_{i = 1}^{i = N}\beta_{t+1}(j)a_{ij} b_{j}(O_{t+1})
+\end{equation*}
+    \end{itemize}
+\end{frame}
+
+%%% Problem 2
+\begin{frame}{Problem 2}
+    \begin{itemize}
+    \item The problem is to find the optimal state sequence associated with the given observation sequence.
+    \item The difficulty lies with the definition of optimal state sequence; i.e.,there are several possible optimality criteria.
+    \item As an example it may be optimal to chose states $q_t$ which are individually most likely.
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+    \begin{itemize}
+        \item Lets solve the problem which uses the above optimality criteria.
+        \item We define a variable\\
+        $\gamma_t(i)=P(q_t=S_i|O,\lambda)$ which is the probability of being in state $S_i$ at time $t$ given the observation sequence $O$ and the model $\lambda$
+        \pause \item $\gamma_t$ can be expressed in terms of forward-backward variables, i.e.,\\
+        $\gamma_t(i)=\frac{\alpha_t(i) \beta_t(i)}  {P(O|\lambda)}=\frac{\alpha_t(i) \beta_t(i)}{\sum_{i=1}^{i=N}\alpha_t(i) \beta_t(i)}$\\
+        since $\alpha_t(i)$ accounts for the partial observation sequence $O_1, O_2, .. , O_t$ and state $S_i$ at time t, while $\beta_t(i)$ accounts for the remaining observation sequence given state $S_i$ at time t
+        \pause \item Using $\gamma_t(i)$ we can solve for individually most likely state $q_t$ at time $t$ as\\
+        $q_t=argmax [\gamma_t(i)] \hphantom{spaces}  1\leq i \leq N$
+    \end{itemize}
+\end{frame}
+
+
+
+%%%Problem 3 begins
+\begin{frame}{Finding the parameters $\lambda$}
+\uncover<+->{This is by far the toughest problem in HMMs. We need an algorithm to find the optimal $a_i_j$ and $b_i(O_t)$ for different i,j and t. In order to do this we use the popular Expectation Maximization algorithm or EM algorithm.}
+
+\vfill
+\uncover<+->{EM Algorithm is a two step algorithm which is used in many Probabilistic machine learning models . Below is the general formulation of EM algorithm }
+
+\vfill
+\uncover<+->{We assume the model parameters are generated from some probability distribution. Here we can assume that the $a_i_j$ are generated from several mutinomial distributions for each i as they are discrete whereas we can think of the $b_i(O_t)$ to be coming from a normal distribution for continuous data or from multinomial for the codebooks we shall use.}
+\vfill
+\uncover<+->{Now these are "latent features" of our model. We represent the state sequence with $Q$ and the parameters which control their distributions which are represented as \lambda }
+
+\end{frame}
+
+\begin{frame}{EM Algorithm cont.}
+\vfillsd
+\uncover<+->{ \textbf{The Expectation Step}: First we randomly initialize the parameters $\lambda$ and then at every iteration we estimate them with the posterity distribution
+\begin{equation*}
+{P(Q|O,\lambda^{old}) \propto P(O|Q,\lambda^{old})*P(Q|\lambda^{old})} 
+\end{equation*}
+}
+\vfill
+\uncover<+->{ \textbf{The Maximization Step}: Now  instead of dong MLE on the data, we use the ${P(Q|O,\lambda^{old})$ to maximize the likelihood of the $\mathbb{E}(P(O,Q|\lambda))$ which can be proven to be a tight lower bound on $P(O|\lambda)$ hence we can increase it indirectly. Here we maximize the log of this lower bound to simplify the calculations.}
+\begin{equation*}
+Q(\lambda_{old},\lambda) = \sum_{z} P(Q|O,\lambda_{old})log\{p(O,Q | \lambda)\} \end{equation*}
+}
+
+
+\end{frame}
+
+
+
+
+
+%%% BIBLIOGRAFIA %%%
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{For Further Reading}
+    
+  \begin{thebibliography}{10}
+    
+  \beamertemplatebookbibitems
+  % Start with overview books.
+
+  \bibitem{}
+    M.~Erickson
+    \newblock {\em Pearls of Discrete Mathematics}.
+    %\newblock Some Press, 1990.
+ 
+    
+  \beamertemplatearticlebibitems
+  % Followed by interesting articles. Keep the list short. 
+
+  \bibitem{}
+    Rabiner-Zheung
+    \newblock An introduction
+to Hidden Markov Model
+    %\newblock {\em Journal of This and That}, 2(1):50--100,
+  \end{thebibliography}
+\end{frame}
+
+\end{document}
